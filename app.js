@@ -1,17 +1,18 @@
 const http = require('http');
+const url = require('url');
 const versionRoutes = require('./src/routes/versionRoutes');
-
 
 const server = http.createServer((req, res) => {
     if (req.url === '/') {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({
-            message: 'Welcome to the version manager',
+            message: 'Bienvenido al gestor de versiones',
             routes: {
-                versions: '/api/versions',
+                NaisTrainingDiary: '/api/versions/NaisTrainingDiary',
+                TeachingFeelingLauncher: '/api/versions/teaching-feeling---Launcher'
             }
-        }));
+        }, null, 2));
     } else if (req.url.startsWith('/api/versions')) {
         versionRoutes(req, res);
     } else {
