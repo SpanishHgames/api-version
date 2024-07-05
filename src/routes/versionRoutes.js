@@ -1,8 +1,10 @@
-const { getAllVersions } = require('../controllers/versionController');
+const { getNaisTrainingDiaryVersions, getTeachingFeelingLauncherVersions } = require('../controllers/versionController');
 
-const versionRoutes = (req, res) => {
-    if (req.method === 'GET' && req.url === '/api/versions') {
-        getAllVersions(req, res);
+const versionRoutes = async (req, res) => {
+    if (req.method === 'GET' && req.url === '/api/versions/NaisTrainingDiary') {
+        await getNaisTrainingDiaryVersions(req, res);
+    } else if (req.method === 'GET' && req.url === '/api/versions/teaching-feeling---Launcher') {
+        await getTeachingFeelingLauncherVersions(req, res);
     } else {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain');
